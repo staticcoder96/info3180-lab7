@@ -6,7 +6,7 @@ This file creates your application.
 """
 
 from app import app
-from flask import render_template, request, redirect, url_for, jsonify
+from flask import render_template, request, redirect, url_for, flash,jsonify,make_response
 from bs4 import BeautifulSoup
 import requests
 import urlparse
@@ -19,6 +19,17 @@ import urlparse
 def home():
     """Render website's home page."""
     return render_template('home.html')
+    
+@app.route("/api/thumbnails")
+def imageURL():
+    urls=imageURL()
+    #for img in soup.find_all('a'):
+    stuff={
+        "error":null,
+        "message": "Success",
+        "thumbnails":urls
+        }
+        return render_template("imageurl.html",jsonify(urls))
 
 
 ###
